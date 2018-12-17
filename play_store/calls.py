@@ -1,44 +1,8 @@
 import requests
 import datetime as dt
 from bs4 import BeautifulSoup
-from dataclasses import dataclass
-
-
-
-@dataclass
-class App(object):
-
-	store_id: str
-	name: str
-	dev_id: str
-	category: str=None
-	subcategory: str=None
-	short_description: str=None
-	long_description: str=None
-	thumbnail: str=None
-	screenshots: str=None
-	rating: int=None
-	reviews: int=None
-	installs: str=None
-	maturity: str=None
-	size: str=None
-	is_free: bool=True
-	display_price: str=None
-	full_price: str=None
-	has_ads: bool=None
-	has_iaps: bool=None
-	current_version: str=None
-	android_version: str=None
-	already_exists: bool=None
-	date_last_updated: dt.date=None
-
-	def __str__(self):
-		return self.name
-		
-	def __repr__(self):
-		return self.__str__()
-
-
+from .models import App
+from django.forms.models import model_to_dict
 
 def search(query):
 
@@ -68,6 +32,8 @@ def search(query):
 		app.is_free != display_price
 		if display_price: app.display_price = display_price.text
 		if full_price: app.full_price = full_price.text
+
+		app = model_to_dict(app) # converting Model to Dict
 		apps.append(app)
 
 	return apps

@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .serializers import AppSerializer
 from play_store.calls import search
 from django.shortcuts import render
+from django.http import JsonResponse, HttpResponseBadRequest
 
 
 
@@ -24,11 +25,14 @@ class AppViewSet(CreateListModelMixin, viewsets.ModelViewSet):
     serializer_class = AppSerializer
     lookup_field = "store_id"
 
+
+
 def search_view(request):
-    if request.POST :
-        query = request.POST.get('query')
-        search_results = search(query)
-        context = {'query': query, 'search_results': search_results}
-    else :
-        context = {}
-    return render(request, 'play_store/search.html', context=context) 
+    return render(request, 'play_store/search.html')
+
+
+
+def search_api(request):
+    query = request.GET.get('query')
+    search_results = search(query)
+    return JsonResponse({'apps': search_results})

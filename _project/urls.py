@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from play_store.views import search_view
+from play_store.views import search_view, search_api
 
 # Admin
 admin.site.site_header = 'LoveMachine - Administration'
@@ -14,7 +14,8 @@ admin.site.site_header = 'LoveMachine - Administration'
 
 urlpatterns = [
 	path('kissing-booth/', admin.site.urls, name='admin'),
-	path('search/', search_view, name='play_store__search')
+	path('search/', search_view, name='play_store__search'),
+	path('search_api/', search_api, name='play_store__search_api'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
