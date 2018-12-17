@@ -1,0 +1,30 @@
+<br/>
+<br/>
+<p>Search for a game :</p>
+<form method="POST">
+{% csrf_token %}
+<p><input class="query_input" name="query" autofocus value="{{ query }}"></input></p>
+<p><button>Go</button></p>
+</form>
+{% if search_results %}
+<hr/>
+<p>Results:</p>
+<div class="app_list">
+	{% for app in search_results %}
+	<a class="app" href="https://play.google.com/store/apps/details?id={{ app.store_id }}" target="_blank">
+		<div class="app_thumbnail"><img src="{{ app.thumbnail }}"/></div>
+		<div class="app_name">{{ app.name }}</div>
+	</a><br/>
+	{% endfor %}
+</div>
+{% endif %}
+<style>
+body { color: #333; font-family: Georgia; text-align: center; }
+.query_input { font-size: 2rem; }
+.app { background-color: rgba(0,0,0,.025); border-radius: 4px; margin: .5rem 0; display: inline-block; }
+.app_thumbnail { display: inline-block; vertical-align: bottom; }
+.app_thumbnail img { width: 34px; }
+.app_name { display: inline-block; line-height: 34px; vertical-align: bottom; width: 20rem; overflow: hidden; margin: 0 .5rem; text-align: left; }
+.app:link, .app:visited { text-decoration: none; color: inherit; }
+.app:hover { background-color: rgba(0,0,0,.075) }
+</style>

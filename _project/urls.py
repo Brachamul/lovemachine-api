@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from ratings.views import csv_view
+from play_store.views import search_view
 
 # Admin
 admin.site.site_header = 'LoveMachine - Administration'
@@ -14,7 +14,7 @@ admin.site.site_header = 'LoveMachine - Administration'
 
 urlpatterns = [
 	path('kissing-booth/', admin.site.urls, name='admin'),
-	path('csv/', csv_view, name='ratings__csv')
+	path('search/', search_view, name='play_store__search')
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

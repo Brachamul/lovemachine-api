@@ -97,17 +97,9 @@ LOGIN_URL = '/auth/login/'
 
 #--------------------------------------------------------------------
 
-# Stores the User model
-INSTALLED_APPS += ['users', ]
-AUTH_USER_MODEL = 'users.User'
-
 
 # Stores app data from the Google Play Store
 INSTALLED_APPS += ['play_store', ]
-
-
-# Allows users to rate apps
-INSTALLED_APPS += ['ratings', ]
 
 
 ######################################################################
