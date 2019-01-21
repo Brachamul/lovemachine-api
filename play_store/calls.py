@@ -4,7 +4,11 @@ from bs4 import BeautifulSoup
 from .models import App
 from django.forms.models import model_to_dict
 
+
+
 def search(query):
+
+	''' When called, returns a list of games it could find based on that name '''
 
 	url = "https://play.google.com/store/search?c=apps&q=" + query
 	headers = {"Accept-Language": "en-US,en;q=0.5"}
