@@ -34,6 +34,7 @@ STATICFILES_DIRS = ( os.path.join((PROJECT_ROOT), "static", "static"),)
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,6 +116,13 @@ REST_FRAMEWORK = {
 	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 	'PAGE_SIZE': 100,
 }
+
+#--------------------------------------------------------------------
+
+INSTALLED_APPS += ['corsheaders',] # django-cors-headers
+# Allows cross-origin api requests
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 #--------------------------------------------------------------------
 
