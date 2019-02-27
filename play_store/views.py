@@ -35,4 +35,4 @@ def search_view(request):
 def search_api(request):
     query = request.GET.get('query')
     search_results = search(query)
-    return JsonResponse({'apps': search_results})
+    return JsonResponse({'apps': search_results, 'query': query})
