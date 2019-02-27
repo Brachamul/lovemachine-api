@@ -1,4 +1,4 @@
-from .models import App
+from .models import AndroidApp
 from rest_framework import viewsets
 from .serializers import AppSerializer
 from play_store.calls import search
@@ -21,7 +21,7 @@ class AppViewSet(CreateListModelMixin, viewsets.ModelViewSet):
     """
     API endpoint that allows Apps to be read, added or updated
     """
-    queryset = App.objects.all()
+    queryset = AndroidApp.objects.all()
     serializer_class = AppSerializer
     lookup_field = "store_id"
 

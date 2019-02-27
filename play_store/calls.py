@@ -1,7 +1,7 @@
 import requests
 import datetime as dt
 from bs4 import BeautifulSoup
-from .models import App
+from .models import AndroidApp
 from django.forms.models import model_to_dict
 
 
@@ -21,7 +21,7 @@ def search(query):
 	for scraped_app in scraped_apps:
 		completed += 1
 		print('* #{}/{}, fetching data from app...'.format(completed,len(scraped_apps)), end="\r")
-		app = App(
+		app = AndroidApp(
 			store_id=scraped_app['data-docid'],
 			name=scraped_app.find('a', class_='title')['title'].strip(),
 			dev_id=scraped_app.find('a', class_='subtitle')['title'].strip(),

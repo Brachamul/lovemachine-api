@@ -1,4 +1,4 @@
-from .models import App
+from .models import AndroidApp
 from rest_framework import serializers
 
 
@@ -11,11 +11,11 @@ class AppSerializer(serializers.HyperlinkedModelSerializer):
         super(AppSerializer, self).run_validators(value)
 
     def create(self, validated_data):
-        instance, _ = App.objects.update_or_create(store_id=validated_data['store_id'], defaults=validated_data)
+        instance, _ = AndroidApp.objects.update_or_create(store_id=validated_data['store_id'], defaults=validated_data)
         return instance
 
     class Meta:
-        model = App
+        model = AndroidApp
         fields = [
             'url', 'store_id', 'name', 'dev_id', 'category', 'subcategory',
             'short_description', 'long_description', 'thumbnail',
@@ -32,7 +32,7 @@ class AppSerializer(serializers.HyperlinkedModelSerializer):
 '''
 
     def create(self, validated_data):
-        app = App.objects.get(store_id=validated_data['store_id'])
+        app = AndroidApp.objects.get(store_id=validated_data['store_id'])
         app.update(**validated_data)
         app.save()
         return instance

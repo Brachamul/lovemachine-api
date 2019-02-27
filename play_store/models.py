@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 
-class App(models.Model):
+class AndroidApp(models.Model):
 
 	# TODO : arrange neatly based on data type for more efficiency, rather than
 	# storing everything in CharFields
