@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from play_store.views import search_view, search_api
+from android_apps.views import search_view
 
 # Admin
 admin.site.site_header = 'LoveMachine - Administration'
@@ -14,20 +14,8 @@ admin.site.site_header = 'LoveMachine - Administration'
 
 urlpatterns = [
 	path('kissing-booth/', admin.site.urls, name='admin'),
-	path('search/', search_view, name='play_store__search'),
-	path('search_api/', search_api, name='play_store__search_api'),
+	path('web/find_app/', search_view, name='play_store__app_search_web'),
+	path('android_apps/', include('android_apps.urls'), name='android_apps'),
+	path('android_users/', include('android_users.urls'), name='android_users'),
+	path('reviews/', include('reviews.urls'), name='reviews'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-# REST Framework
-
-from rest_framework import routers
-from play_store import views
-
-router = routers.DefaultRouter()
-router.register(r'apps', views.AppViewSet)
-
-urlpatterns += [
-    path('', include(router.urls)),
-	path('api-auth/', include('rest_framework.urls'))
-]

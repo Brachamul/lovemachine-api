@@ -9,7 +9,7 @@
 	<br/>
 	<div class="app_list">
 		{% for app in search_results %}
-		<a class="app" href="https://play.google.com/store/apps/details?id={{ app.store_id }}" target="_blank">
+		<a class="app" href="https://play.google.com/store/apps/details?id={{ app.google_app_id }}" target="_blank">
 			<div class="app_thumbnail"><img src="{{ app.thumbnail }}"/></div>
 			<div class="app_name">{{ app.name }}</div>
 		</a><br/>
@@ -52,7 +52,7 @@ body { color: #333; font-family: Georgia; text-align: center; }
 				var app_list_html = ""
 				$.each(data.apps, function(i, app){
 					app_list_html += `
-						<a class="app" href="https://play.google.com/store/apps/details?id=${app.store_id}" target="_blank">
+						<a class="app" href="https://play.google.com/store/apps/details?id=${app.google_app_id}" target="_blank">
 							<div class="app_thumbnail"><img src="${app.thumbnail}"/></div>
 							<div class="app_name">${app.name}</div>
 						</a><br/>
