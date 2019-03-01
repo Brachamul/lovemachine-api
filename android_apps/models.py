@@ -1,14 +1,15 @@
 import uuid
 from django.db import models
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 
 
-class App(models.Model):
+class AndroidApp(models.Model):
 
 	# TODO : arrange neatly based on data type for more efficiency, rather than
 	# storing everything in CharFields
-	store_id = models.CharField(unique=True, max_length=256) # "com.kiloo.subwaysurf"
+	google_app_id = models.CharField(unique=True, max_length=256) # "com.kiloo.subwaysurf"
 	name = models.CharField(max_length=256) # "Subway Surfers"
 	dev_id = models.CharField(max_length=128) # "5062298237373103345"
 	category = models.CharField(max_length=128, blank=True, null=True) # "GAME"
@@ -36,7 +37,19 @@ class App(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return reverse("app-detail", kwargs={'store_id': self.store_id})
+		return reverse("app-detail", kwargs={'google_app_id': self.google_app_id})
 
 	class Meta:
 		ordering = ["-reviews", ]
+
+	def price(self):
+		return self.display_price if self.display_price else "Free"
+
+	def html_thumbnail(self, size=170):
+		if self.thumbnail :
+			return mark_safe('\
+				<img src="{url}"\
+				style="max-width: {size}px; max-height: {size}px; border: 1px solid #ccc; border-radius: 4px;"\
+				title="{name}"/>'.format(url=self.thumbnail, size=size, name=self.__str__()))
+		else:
+			return ""

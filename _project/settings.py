@@ -99,8 +99,16 @@ LOGIN_URL = '/auth/login/'
 #--------------------------------------------------------------------
 
 
-# Stores app data from the Google Play Store
-INSTALLED_APPS += ['play_store', ]
+# Calls and stores android app data from the Google Play Store
+INSTALLED_APPS += ['android_apps', ]
+
+
+# Stores users from Google Play Game Services (GPGS)
+INSTALLED_APPS += ['android_users', ]
+
+
+# Stores user reviews and ratings
+INSTALLED_APPS += ['reviews', ]
 
 
 ######################################################################
